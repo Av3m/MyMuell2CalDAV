@@ -13,7 +13,7 @@ Instead, users are forced to install the buggy and heavy battery draining _MyMü
 So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web service and synchronize the events with a conventional CalDAV server.
 
 
-## implementation status
+## Implementation Status
 - all required functionality implemented for basic usage
 - functional GUI written in PyQt5
 - persist all settings for later use
@@ -21,7 +21,7 @@ So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web se
 - works reliable in combination with Nextcloud 20 with official Calendar plugin
 
 
-## ToDos
+## ToDo's
 - more GUI settings
   - adjustable notification triggers for upcoming events
   - adjustable start time and event duration
@@ -31,17 +31,22 @@ So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web se
   - Google
     
 - export the CalDAV events to a local file for manual import to a calendar
+- unit tests for app
 
 
-#usage
+## Usage
 - get url of your CalDAV principal.
-  For Nextcloud, this `http://your.nextcloud.host/nextcloud/remote.php/dav/calendars`
-  
-- Start GUI 
+  For Nextcloud, this `https://your.nextcloud.domain/nextcloud/remote.php/dav/calendars`
+- Start app and edit url, user and password of your CalDAV server
+- press _connect_ button and wait for message that connection was successful.
+- select an available calendar from drop down or insert a new name to create a new calendar
+  - select a city from available list entries. you can use the _Filter Cities_ field to search for matching expression
+- press _sync events_ button and wait for completion.
+- if you want do erase all former created events by this app, press _delete existing events_ button.
 
 
-#Disclaimer
-This tool was developed by an annoyed _MyMüll.de_ app user as a free contribute 
+## Disclaimer
+This tool was developed by an annoyed _MyMüll.de_ app user as a free contribution 
 to the open source community and is licenced under the **GPLv3** Licence.
 
 This software does not stand in any relation to the official _MyMüll.de_ app or the company that provides/developes this service.
