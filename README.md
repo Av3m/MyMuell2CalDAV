@@ -44,6 +44,7 @@ So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web se
 - press _sync events_ button and wait for completion.
 - if you want do erase all former created events by this app, press _delete existing events_ button.
 
+![GUI](./doc/GUI.png)
 
 ## Disclaimer
 This tool was developed by an annoyed _MyMüll.de_ app user as a free contribution 

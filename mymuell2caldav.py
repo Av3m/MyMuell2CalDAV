@@ -247,7 +247,7 @@ class MyMuell2CalDavGui(QMainWindow):
         self._calendarNames.setContentsMargins(0, 10, 0, 10)
 
         # self.setGeometry(300, 300, 1000, 800)
-        self.setMinimumWidth(800)
+        self.setMinimumWidth(500)
         self.setWindowTitle("MyMuell DAV GUI")
 
     def slot_process_finished(self, result: bool, msg: str):
