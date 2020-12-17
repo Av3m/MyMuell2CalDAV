@@ -17,13 +17,11 @@ from PyQt5.QtWidgets import \
     QSizePolicy, \
     QMainWindow
 
-
-from PyQt5.QtCore import QModelIndex, Qt
-import MyMuellDataModel
+from PyQt5.QtCore import Qt
 import sys
-import CalendarSync
 
-from GuiWorker import GuiWorker
+from databinding import CalendarSync, MyMuellDataModel
+from utils.GuiWorker import GuiWorker
 
 
 class MyMuell2CalDavGui(QMainWindow):
@@ -61,10 +59,9 @@ class MyMuell2CalDavGui(QMainWindow):
         self._workerSync = GuiWorker(self.runnable_sync_events)
         self._workerDelete = GuiWorker(self.runnable_delete_events)
 
+        self.__init_ui()
 
-        self.initUI()
-
-        self.__fillCities()
+        self.__fill_cities()
 
     def entrySelected(self, i: QListWidgetItem):
         city = self._dataModel.get_city_by_id(i.data(QListWidgetItem.UserType))
@@ -103,7 +100,7 @@ class MyMuell2CalDavGui(QMainWindow):
         for i in range(0, len(events)):
             worker.stateChanged.emit("creating event {} {}".format(events[i]["title"], events[i]["day"]))
             self._davClient.syncEvents(events[i])
-            worker.progressChanged.emit(i+1)
+            worker.progressChanged.emit(i + 1)
 
         worker.stateChanged.emit("syncing events finished")
         return True, "syncing events finished"
@@ -126,13 +123,12 @@ class MyMuell2CalDavGui(QMainWindow):
         for i in range(0, len(events)):
             worker.stateChanged.emit("deleting event {}".format(events[i].vobject_instance.vevent.uid.value))
             events[i].delete()
-            worker.progressChanged.emit(i+1)
+            worker.progressChanged.emit(i + 1)
 
         worker.stateChanged.emit("deletion finished.")
         return True, "deleting events finished"
 
     def runnable_connect_caldav(self, worker: GuiWorker) -> tuple[bool, str]:
-
 
         try:
             worker.stateChanged.emit("connecting to {}".format(self._url.text()))
@@ -147,12 +143,7 @@ class MyMuell2CalDavGui(QMainWindow):
             if self._settings["calendar"] != '':
                 self._calendarNames.setCurrentText(self._settings["calendar"])
 
-
-
             worker.stateChanged.emit("connected.")
-
-
-
 
         except Exception as e:
             worker.stateChanged.emit("connection failed.")
@@ -160,15 +151,13 @@ class MyMuell2CalDavGui(QMainWindow):
 
         return True, "connect successful"
 
-    def initUI(self):
+    def __init_ui(self):
 
         tlWidget = QWidget()
         layout = QGridLayout()
         tlWidget.setLayout(layout)
 
         self.setCentralWidget(tlWidget)
-
-
 
         groupBoxMyMuell = QGroupBox("MyMüll.de Cities")
         layoutGroupBoxMyMuell = QGridLayout()
@@ -223,7 +212,7 @@ class MyMuell2CalDavGui(QMainWindow):
         self._calendarNames.setEnabled(False)
 
         self._citiesWidget.currentItemChanged.connect(lambda cur, prev: self.entrySelected(cur))
-        self._filterText.textChanged.connect(self.__fillCities)
+        self._filterText.textChanged.connect(self.__fill_cities)
 
         self._url.textChanged.connect(self.saveSettings)
         self._user.textChanged.connect(self.saveSettings)
@@ -257,12 +246,9 @@ class MyMuell2CalDavGui(QMainWindow):
         self._user.setContentsMargins(0, 10, 0, 10)
         self._calendarNames.setContentsMargins(0, 10, 0, 10)
 
-
-        #self.setGeometry(300, 300, 1000, 800)
+        # self.setGeometry(300, 300, 1000, 800)
         self.setMinimumWidth(800)
         self.setWindowTitle("MyMuell DAV GUI")
-
-
 
     def slot_process_finished(self, result: bool, msg: str):
         if result:
@@ -280,7 +266,7 @@ class MyMuell2CalDavGui(QMainWindow):
         else:
             self._syncButton.setEnabled(False)
 
-    def __fillCities(self, pattern=".+"):
+    def __fill_cities(self, pattern=".+"):
         self._citiesWidget.blockSignals(True)
         self._citiesWidget.clear()
 
@@ -301,8 +287,6 @@ class MyMuell2CalDavGui(QMainWindow):
             items = self._citiesWidget.findItems(self._settings["mymuellcity"], Qt.MatchExactly)
             if len(items) > 0:
                 self._citiesWidget.setCurrentItem(items[0])
-
-
 
 
 def main():

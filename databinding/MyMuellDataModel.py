@@ -1,7 +1,6 @@
 import http.client
 import json
-import LocalDataStorage
-from appdirs import *
+import databinding.LocalDataStorage as LocalDataStorage
 import logging
 import re
 
