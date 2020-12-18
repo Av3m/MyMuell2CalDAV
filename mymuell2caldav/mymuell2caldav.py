@@ -20,16 +20,17 @@ from PyQt5.QtWidgets import \
 from PyQt5.QtCore import Qt
 import sys
 
-from databinding import CalendarSync, MyMuellDataModel
-from utils.GuiWorker import GuiWorker
-
+from mymuell2caldav.databinding.CalendarSync import CalendarSync
+from mymuell2caldav.databinding.MyMuellDataModel import MyMuellDataModel
+from mymuell2caldav.utils.GuiWorker import GuiWorker
+from mymuell2caldav.version import VERSION
 
 class MyMuell2CalDavGui(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self._dataModel = MyMuellDataModel.MyMuellDataModel()
-        self._davClient = CalendarSync.CalendarSync()
+        self._dataModel = MyMuellDataModel()
+        self._davClient = CalendarSync()
 
         self._selectedCity = None
 
@@ -248,7 +249,7 @@ class MyMuell2CalDavGui(QMainWindow):
 
         # self.setGeometry(300, 300, 1000, 800)
         self.setMinimumWidth(500)
-        self.setWindowTitle("MyMuell DAV GUI")
+        self.setWindowTitle("MyMuell 2 CalDAV Version " + VERSION )
 
     def slot_process_finished(self, result: bool, msg: str):
         if result:

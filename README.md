@@ -12,6 +12,9 @@ Instead, users are forced to install the buggy and heavy battery draining _MyMü
 
 So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web service and synchronize the events with a conventional CalDAV server.
 
+## Changelog
+* 1.0.0
+  - first release with all basically needed functionality
 
 ## Implementation Status
 - all required functionality implemented for basic usage
@@ -33,6 +36,16 @@ So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web se
 - export the CalDAV events to a local file for manual import to a calendar
 - unit tests for app
 
+## Setup
+- install and setup latest python3 on your platform.
+- open a shell and check if the command `python --version` works and points the intended version
+- install it with via following shell command:
+  
+  `python -m pip install https://github.com/Av3m/MyMuell2CalDAV/raw/master/releases/mymuell2caldav-1.0.0-py3-none-any.whl`
+
+  
+- start the tool via command `mymuell2caldav`
+  - alternatively, you could start with `python -m mymuell2caldav`
 
 ## Usage
 - get url of your CalDAV principal.
@@ -45,6 +58,9 @@ So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web se
 - if you want do erase all former created events by this app, press _delete existing events_ button.
 
 ![GUI](./doc/GUI.png)
+
+
+
 
 ## Disclaimer
 This tool was developed by an annoyed _MyMüll.de_ app user as a free contribution 
