@@ -1,6 +1,6 @@
 import http.client
 import json
-import databinding.LocalDataStorage as LocalDataStorage
+import mymuell2caldav.databinding.LocalDataStorage as LocalDataStorage
 import logging
 import re
 
