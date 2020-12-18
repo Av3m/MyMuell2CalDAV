@@ -34,15 +34,22 @@ def generate_long_description_file():
         long_description = f.read()
     return long_description
 
+def get_version():
+    env = dict()
+    with open('mymuell2caldav/version.py', 'r') as f:
+        exec(f.read(), env)
+
+    return env['VERSION']
+
 
 setup(
     name='mymuell2caldav',
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.0.0',
+    version=get_version(),
 
-    description='...',
+    description='Tool to sync garbage disposal events from MyMüll.de to standard CalDAV server, e.g. Nextcloud',
     long_description=generate_long_description_file(),
     long_description_content_type='text/markdown',
 
@@ -60,8 +67,9 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
-        'License :: OSI Approved :: MIT License',
+        'Topic :: Home Automation',
+        'Topic :: Office/Business :: Scheduling',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
@@ -69,7 +77,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords=['caldav'],
+    keywords=['caldav', 'mymuell', 'sync', 'garbage disposal'],
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().

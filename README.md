@@ -12,6 +12,8 @@ Instead, users are forced to install the buggy and heavy battery draining _MyMü
 
 So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web service and synchronize the events with a conventional CalDAV server.
 
+##Changelog
+* 1.0.0 - initial version
 
 ## Implementation Status
 - all required functionality implemented for basic usage
@@ -45,6 +47,20 @@ So this tool aims to get rid of the app by parsing data from _MyMüll.de_ web se
 - if you want do erase all former created events by this app, press _delete existing events_ button.
 
 ![GUI](./doc/GUI.png)
+
+
+## Setup
+- install and setup latest python3 on your platform.
+- open a shell and check if the command `python --version` works and points the intended version
+- download the latest wheel package in subdirectory _releases/_ on this repository.
+- install it with via following shell command:
+  (the string "x.x.x" need to be replaced with the latest version number)
+  
+  `python -m pip install mymuell2caldav-x.x.x-py3-none-any.whl`
+
+  
+- start the tool via command `mymuell2caldav`
+  - alternatively, you could start with `python -m mymuell2caldav`
 
 ## Disclaimer
 This tool was developed by an annoyed _MyMüll.de_ app user as a free contribution 
